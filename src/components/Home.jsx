@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import Loader from "./Loader";
 
 // const fetchdata = async() => {
   
@@ -11,6 +12,7 @@ import { useDispatch } from "react-redux";
 // }
 // fetchdata();
 const Home = () => {
+  const [loader, setLoader] = useState(true)
   const [productList, setproductList] = useState([])
   useEffect(() => {
     const fetchdata = async () => {
@@ -18,7 +20,7 @@ const Home = () => {
      console.log(data)
      setproductList([...data])
      // console.log(moviesdata);
-    //  setloading(false)
+    setLoader(false)
      
     }
     fetchdata();
@@ -76,6 +78,9 @@ const Home = () => {
   };
   return (
     <div className="home">
+      {
+        loader ? <Loader/> : ""
+      }
       {productList.map((i) => (
         <ProductCard
           key={i._id}

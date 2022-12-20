@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddProduct from "./AddProduct";
-import DeletePrduct from "./DeletProduct";
+import "../styles/login.scss"
 function Login() {
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState();
@@ -12,10 +12,10 @@ function Login() {
     }
   }
   return (
-    <div>
-      <div className="form-container">
+    <div className="main">
         {
-          !login && <form onSubmit={LoginHandle}>
+     !login && <div className="form-container">
+           <form onSubmit={LoginHandle}>
           <input type="email" value={email} placeholder="Email" onChange={(e) => {
             setEmail(e.target.value)
           }} />
@@ -24,10 +24,10 @@ function Login() {
           }} />
           <button onSubmit={LoginHandle}>Submit</button>
         </form>
-        }
       </div>
+        }
       {login && <AddProduct />}
-      {login && <DeletePrduct />}
+      
     </div>
   );
 }
